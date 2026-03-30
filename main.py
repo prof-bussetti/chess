@@ -5,4 +5,4 @@ board = fen2matrix(FEN_START)
 
 while True:
     print_board(board)
-    move = input("\n\nPlay your move\n\n>> ")
+    move = input("\nPlay your move\n\n>> ")
