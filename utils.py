@@ -1,7 +1,7 @@
-from print_board import print_board
+import json
 
-FEN_START = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
-fen_checkmate = "5kr1/R6p/5b2/4n3/3N2Pq/2P4P/3Q3K/5R2"
+fen_start = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
+fen_start_simbol = "♜♞♝♛♚♝♞♜/♟♟♟♟♟♟♟♟/8/8/8/8/♙♙♙♙♙♙♙♙/♖♘♗♕♔♗♘♖"
 
 
 def fen2matrix(fen):
@@ -51,4 +51,24 @@ def matrix2fen(board):
     return fen[:-1]
 
 
-board = fen2matrix(fen_checkmate)
+def show_board(
+    board: list[list],
+):  # : list[list] serve per dire al compilatore che tipo di oggetto è board
+    n = 8
+    for riga in board:
+        print("   +---+---+---+---+---+---+---+---+")
+        print(n, end="  ")
+        n -= 1
+        for elemento in riga:
+            print("|", end=" ")
+            print(elemento, end=" ")
+        print("|")
+    print("")
+    print("     a   b   c   d   e   f   g   h   ")
+
+
+board = fen2matrix(fen_start)
+board = fen2matrix(fen_start_simbol)  # funziona ma su vscode, non su colab
+
+with open("board.json", "w") as f:
+    f.write(json.dumps(board))
