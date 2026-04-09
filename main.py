@@ -19,13 +19,17 @@ while True:
     # 2.1 parse user input (dividere un input in sottoclassi)
     move_start, move_end = move[:2], move[2:]
 
-    col_start = int(col.get(move_start[0]))
+    col_start = col.get(move_start[0])
     row_start = (
         int(move_start[-1]) - 1
     )  ### indice è indietro di uno rispetto alla coordinata perchè parte da 0
 
-    col_end = int(col.get(move_end[0]))
+    col_end = col.get(move_end[0])
     row_end = int(move_end[-1]) - 1
 
-    move_start = board[::-1][row_start][col_start]
-    move_end = board[::-1][row_end][col_end]
+    piece_start = board[::-1][row_start][col_start]
+    piece_end = board[::-1][row_end][col_end]
+
+    if piece_start != " ":
+        board[::-1][row_start][col_start] = " "
+        board[::-1][row_end][col_end] = piece_start

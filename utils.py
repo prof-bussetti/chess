@@ -68,7 +68,7 @@ def show_board(
 
 
 board = fen2matrix(fen_start)
-board = fen2matrix(fen_start_simbol)  # funziona ma su vscode, non su colab
+# board = fen2matrix(fen_start_simbol)  # funziona ma su vscode, non su colab
 
 with open("board.json", "w") as f:
     f.write(json.dumps(board))
