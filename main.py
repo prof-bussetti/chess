@@ -1,5 +1,6 @@
 import json
 from utils import show_board
+from pawn import valid_pawn_move
 
 with open("board.json", "r") as f:
     board = json.loads(f.read())
@@ -16,16 +17,40 @@ while True:
     if move.lower() == "q":
         break
 
+    if len(move) != 4:
+        print("Invalid move")
+        continue
+
     # 2.1 parse user input (dividere un input in sottoclassi)
     move_start, move_end = move[:2], move[2:]
 
-    col_start = col.get(move_start[0])
-    row_start = (
-        int(move_start[-1]) - 1
-    )  ### indice è indietro di uno rispetto alla coordinata perchè parte da 0
+    col_start = move_start[0].lower()
+    row_start = move_start[-1]
 
-    col_end = col.get(move_end[0])
-    row_end = int(move_end[-1]) - 1
+    if col_start not in "abcdefgh":
+        print("Invalid move")
+        continue
+
+    if row_start not in "12345678":
+        print("Invalid move")
+        continue
+
+    col_start = col.get(col_start)
+    row_start = int(row_start) - 1
+
+    col_end = move_end[0].lower()
+    row_end = move_end[-1]
+
+    if col_end not in "abcdefgh":
+        print("Invalid move")
+        continue
+
+    if row_end not in "12345678":
+        print("Invalid move")
+        continue
+
+    col_end = col.get(col_end)
+    row_end = int(row_end) - 1
 
     piece_start = board[::-1][row_start][col_start]
     piece_end = board[::-1][row_end][col_end]
