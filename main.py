@@ -1,6 +1,5 @@
 import json
-from utils import show_board
-from pieces.pawn import valid_pawn_move
+from utils import show_board, is_legal_move
 
 with open("board.json", "r") as f:
     board = json.loads(f.read())
@@ -55,7 +54,7 @@ while True:
     piece_start = board[::-1][row_start][col_start]
     piece_end = board[::-1][row_end][col_end]
 
-    if not valid_pawn_move(col_start, row_start, col_end, row_end, board):
+    if not is_legal_move(col_start, row_start, col_end, row_end, board):
         print("Illegal move!")
         continue
 
