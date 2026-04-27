@@ -1,7 +1,7 @@
-def valid_queen_move(
+def valid_knight_move(
     col_start: int, row_start: int, col_end: int, row_end: int, board: list[list]
 ):
-    """Checks if the move is valid for a queen on this board,
+    """Checks if the move is valid for a knight on this board,
     moving from start to end coordinates"""
 
     board = board[::-1]

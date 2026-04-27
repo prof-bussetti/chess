@@ -55,10 +55,13 @@ while True:
     piece_start = board[::-1][row_start][col_start]
     piece_end = board[::-1][row_end][col_end]
 
+    if piece_start == " ":
+        print("Illegal move!")
+        continue
+
     if not valid_move(col_start, row_start, col_end, row_end, board):
         print("Illegal move!")
         continue
 
-    if piece_start != " ":
-        board[::-1][row_start][col_start] = " "
-        board[::-1][row_end][col_end] = piece_start
+    board[::-1][row_start][col_start] = " "
+    board[::-1][row_end][col_end] = piece_start

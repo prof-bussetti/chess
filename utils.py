@@ -3,6 +3,8 @@ from pieces.pawn import valid_pawn_move
 from pieces.rook import valid_rook_move
 from pieces.bishop import valid_bishop_move
 from pieces.queen import valid_queen_move
+from pieces.king import valid_king_move
+from pieces.knight import valid_knight_move
 
 fen_start = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
 fen_start_simbol = "♜♞♝♛♚♝♞♜/♟♟♟♟♟♟♟♟/8/8/8/8/♙♙♙♙♙♙♙♙/♖♘♗♕♔♗♘♖"
@@ -83,6 +85,17 @@ def valid_move(col_start, row_start, col_end, row_end, board):
 
     if starting_piece.lower() == "b":
         return valid_bishop_move(col_start, row_start, col_end, row_end, board)
+
+    if starting_piece.lower() == "k":
+        return valid_king_move(col_start, row_start, col_end, row_end, board)
+
+    if starting_piece.lower() == "q":
+        return valid_queen_move(col_start, row_start, col_end, row_end, board)
+
+    if starting_piece.lower() == "n":
+        return valid_knight_move(col_start, row_start, col_end, row_end, board)
+
+    raise ValueError()
 
 
 board = fen2matrix(fen_start)
