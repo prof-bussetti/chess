@@ -1,4 +1,6 @@
 import json
+from pieces.pawn import valid_pawn_move
+from pieces.rook import valid_rook_move
 
 fen_start = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
 fen_start_simbol = "♜♞♝♛♚♝♞♜/♟♟♟♟♟♟♟♟/8/8/8/8/♙♙♙♙♙♙♙♙/♖♘♗♕♔♗♘♖"
@@ -65,6 +67,18 @@ def show_board(
         print("|")
     print("")
     print("     a   b   c   d   e   f   g   h   ")
+
+
+def valid_move(col_start, row_start, col_end, row_end, board):
+
+    board = board[::-1]
+    starting_piece = board[row_start][col_start]
+
+    if starting_piece.lower() == "p":
+        return valid_pawn_move(col_start, row_start, col_end, row_end, board)
+
+    if starting_piece.lower() == "r":
+        return valid_rook_move(col_start, row_start, col_end, row_end, board)
 
 
 board = fen2matrix(fen_start)
