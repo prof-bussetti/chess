@@ -28,12 +28,14 @@ def valid_pawn_move(
         # Check if the landing square is empty
         if board[row_start + forward_direction][col_start] == " ":
             legal_moves.append((forward_direction, 0))
+            print(legal_moves)
 
             # Già che ci siamo, controlliamo anche il doppio passo
             starting_pawn_row = 1 if forward_direction == 1 else 6
             if row_start == starting_pawn_row:
                 if board[row_start + 2 * forward_direction][col_start] == " ":
                     legal_moves.append((2 * forward_direction, 0))
+                    print(legal_moves)
 
     # MOVE: diagonal captures
 
@@ -45,10 +47,10 @@ def valid_pawn_move(
 
             ending_square = board[row_start + forward_direction][col_start + c_delta]
 
-            if ending_square in "rnbqp" and piece_start.isupper():
+            if ending_square in "rnbqkp" and piece_start.isupper():
                 legal_moves.append((forward_direction, c_delta))
 
-            if ending_square in "RNBQP" and piece_start.islower():
+            if ending_square in "RNBQKP" and piece_start.islower():
                 legal_moves.append((forward_direction, c_delta))
 
     return (row_end - row_start, col_end - col_start) in legal_moves

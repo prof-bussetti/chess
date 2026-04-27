@@ -1,7 +1,7 @@
-def valid_rook_move(
+def valid_bishop_move(
     col_start: int, row_start: int, col_end: int, row_end: int, board: list[list]
 ):
-    """Checks if the move is valid for a rook on this board,
+    """Checks if the move is valid for a bishop on this board,
     moving from start to end coordinates"""
 
     board = board[::-1]
@@ -11,7 +11,7 @@ def valid_rook_move(
 
     legal_moves = []
 
-    for dir in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
+    for dir in [(1, 1), (1, -1), (-1, 1), (-1, -1)]:
         for steps in range(1, 8):
 
             dr, dc = steps * dir[0], steps * dir[1]
